@@ -1,28 +1,26 @@
 ---
-title: "2020-toronto-election-prediction"
+title: "2020 Toronto Election Prediction"
 author: "Group 62; Minhui Pan, Sizhen Wu, Haoting Yu"
 date: "10/8/2020"
+bibliography: "reference.bib"
 output: pdf_document
 ---
 
 # Part 1. Summary
-Significant changes have happened in Canada since last year’s federal election. Since the COVID-19 outbreak, the federal government and local leaders have placed different measures and contingency plans to react to the pandemic. We are working with the liberal party to investigate Toronto residences’ (excluding the GTA area) opinion on the office’s work in the past year and to reflect on the effectiveness of their reactive policies during the pandemic outbreak. The current survey simulated 500 participants’ responses as our representative sample. The distribution of the simulation is designed based on demographic layouts according to the 2016 census Canada (Census Canada, 2016). Simulation results were analyzed according to gender, age, racial groups, and income. The results showed that most voters in Toronto are satisfied with the government’s reactive measures to COVID-19 and think that they are very efficient. They favour the Liberal party over the others, predominantly Asian and European groups. The liberal supporters are constituted by female Europeans and Asians, whose household income is below 40,000 dollars per year. 
+Significant changes have happened in Canada since last year’s federal election. Since the COVID-19 outbreak, the federal government and local leaders have placed different measures and contingency plans to react to the pandemic. We are working with the liberal party to investigate Toronto residences’ (excluding the GTA area) opinion on the office’s work in the past year and to reflect on the effectiveness of their reactive policies during the pandemic outbreak. The current survey simulated 500 participants’ responses as our representative sample. The distribution of the simulation is designed based on demographic layouts according to the 2016 census Canada (@citecensus). Simulation results were analyzed according to gender, age, racial groups, and income. The results showed that most voters in Toronto are satisfied with the government’s reactive measures to COVID-19 and think that they are very efficient. Voters, predominantly Asian and European groups, favour the Liberal party over the others. The liberal supporters are mostly constituted by female Europeans and Asians, whose household income is below 40,000 dollars per year. 
 
 # Part 2. Introduction
-In this opinion polling, we are investigating the political interest of Toronto residences eligible to vote if an election was held in 2020. Toronto has always been the top supporter of the liberal party. Over the past few elections, the liberal leaders had an absolute majority of all districts (wiki). Last year, the liberal party won all 23 out of 23 districts in the city of Toronto. However, as the national polling suggests, the support rate for the two most powerful parties, the liberal and the conservative, in Canada has been gradually declining on a national level. We are interested in investigating whether this trend is present in Toronto and whether the liberal leaders in Toronto should be cautious of people’s attitude change after the pandemic.
-
-With that in mind, our survey includes questions that investigate the pandemic’s effect on electors’ evaluation, both emotionally and rationally, of current policies.
+In this opinion polling, we are investigating the political interest of Toronto residences eligible to vote if an election was held in 2020. Toronto has always been the top supporter of the liberal party (@citepastresultstoronto). Over the past few elections, the liberal leaders had an absolute majority of all districts. Last year, the liberal party won all 23 out of 23 districts in the city of Toronto (@citynews). However, as the national polling suggests, the support rate for the two most powerful parties, the liberal and the conservative, in Canada has been gradually declining on a national level. We are interested in investigating whether this trend is present in Toronto and whether the liberal leaders in Toronto should be cautious of people’s attitude change after the pandemic.
 
 # Part 3.Survey Methodology. 
-Survey questions consist of gender, racial group by global geography, age, income range, personal experience in the pandemic, and government measures evaluation. We are not collecting data involving address, contact, or other personal information. There are seven questions in total, requiring approximately two minutes to finish; participants will have up to one week to complete the survey with a maximum one attempt, until it closes after one month (starting from October 02, 2020). We are using online panels to post survey link and scan code on social media sites, such as Twitter and Facebook via official government account and local district websites. Social media users are predominantly younger adults (We chose Twitter and Facebook because their user average user age is higher than other sites). Therefore, we will also put up posters in local grocery stores, such as Walmart and Shoppers, to get participants from various age groups. 
+Our questionnaire includes questions that investigate the pandemic’s effect on electors’ evaluation, both emotionally and rationally, of current policies. Survey questions consist of gender, racial group by global geography, age, income range, personal experience in the pandemic, and government measures evaluation. We are not collecting data involving address, contact, or other personal information. There are seven questions in total, requiring approximately two minutes to finish; participants will have up to one week to complete the survey with a maximum one attempt, until it closes after one month (starting from October 02, 2020). We are using online panels to post survey link and scan code on social media sites, such as Twitter and Facebook via official government account and local district websites. Social media users are predominantly younger adults (We chose Twitter and Facebook because their user average user age is higher than other sites). Therefore, we will also put up posters in local grocery stores, such as Walmart and Shoppers, to get participants from various age groups. 
 
-This study stimulated a representative sample of 500 participants; responses to each question are generated separately and then combined into a collective dataset. A sample with a population of 6,196,731 (worldpopulationreview, 2020), a margin of error of ± 5%, and a confidence rate of 95%, would have an effective sample size of 385 subjects ().
+This study stimulated a representative sample of 500 participants; responses to each question are generated separately and then combined into a collective dataset using R (@citetidyverse). A sample with a population of 6,196,731 @torontopopulation, a margin of error of ± 5%, and a confidence rate of 95%, would have an effective sample size of 385 subjects @citecalculator.
 
-Under our best response rate assumption, this study uses a sample size of 500 for simulation. Since we are using non-probability sampling, no margin of error can be associated with this survey. For comparison purposes, a probability sample of 500 participants with this population would have a margin of error ± 4%. Studies typically use weighted samples to control the non-response bias for small sample sizes; however, we are simulating a dataset much larger than the effective sample size. Therefore, to avoid confusion and preserve the data's simplicity, we did not include any weighting method here. On the other hand, to ensure the sample's representativeness, the simulation is designed according to the probability distribution of each variable in the 2019 election results posted on the Global Mail (). 
+Under our best response rate assumption, this study uses a sample size of 500 for simulation. Since we are using non-probability sampling, no margin of error can be associated with this survey. For comparison purposes, a probability sample of 500 participants with this population would have a margin of error ± 4%. Studies typically use weighted samples to control the non-response bias for small sample sizes; however, we are simulating a dataset much larger than the effective sample size. Therefore, to avoid confusion and preserve the data's simplicity, we did not include any weighting method here. On the other hand, to ensure the sample's representativeness, the simulation is designed according to the probability distribution of each variable in the 2019 election results posted on the Global Mail (@globalmail). 
 
 
-# Simulate an appropriate number of responses to your survey. Don't forget to simulate in relation to the survey methodology that you proposed. 
-
+# Sample Simulation. 
 method: non-probablity sampling
 simulate population N = 500
 
@@ -46,7 +44,7 @@ age <- c("18-24","25-34","35-44","45-54","55-64","65+")
 d3_age<-sample(age,500,replace=TRUE,prob=c(0.11,0.17,0.14,0.18,0.13,0.15))
 head(d3_age)
 
-househould_income <- c("<$19,999","$20,000-$39,999","$40,000-$59,999","$60,000-$79,999",">$80,000")
+househould_income <- c("<$19,999","$20,000-$39,999","$40,000-$59,999","$60,000-$79,999","$80,000+")
 d4_income<-sample(househould_income,500,replace=TRUE,prob = c(0.37,0.26,0.18,0.1,0.09))
 head(d4_income)
 
@@ -73,45 +71,44 @@ head(my_data)
 
 ```{r}
 #Plot data to get a overview
-ggplot(my_data, aes(x = d1_gender)) + geom_bar(width=0.2)+labs( x = "Gender", y = "Number of people",
-                                                                title ="Gender Distribution")
+ggplot(my_data, aes(x = d1_gender, fill = d1_gender)) + geom_bar(width=0.2)+labs( x = "Gender", y = "Number of people", title ="Gender Distribution") + guides(fill = guide_legend(title = "Gender"))
 ```
 We have made a gender distribution graph on the 500 people who have taken the survey from the first bar chat above. The majority of them are female, which is about 20% more than males. 
 
 ```{r}
 #Plot data to get a overview
-ggplot(my_data, aes(x = d2_ethnicity)) + geom_bar(width=0.2)+labs( x = "Ethnic groups", y = "Number of people",
-                                                                   title ="Ethnic Distribution")
+ggplot(my_data, aes(x = d2_ethnicity, fill = d2_ethnicity)) + geom_bar(width=0.2)+labs( x = "Ethnic groups", y = "Number of people", title ="Ethnic Distribution") + guides(fill = guide_legend(title = "Ethnicity"))
 ```
-This bar chart that tells us how the 500 people are divided by ethnicity. The result is divided into Aboriginal, African, Asian, Caribbean, Central & Southern American, European, and Oceania. As the graph tells, people who have taken this survey are the majority of Asians and Europeans.
+Majority of the survey participants are Asian and Europeans. These two ethnic groups takes up the more percentage of the population than all the others combined.
 
 ```{r}
 #Plot data to get a overview
-ggplot(my_data, aes(x = d3_age)) + geom_bar(width=0.2)+labs( x = "Age groups", y = "Number of people", title ="Age group Distribution")
+ggplot(my_data, aes(x = d3_age, fill = d3_age)) + geom_bar(width=0.2)+labs( x = "Age groups", y = "Number of people", title ="Age group Distribution") + guides(fill = guide_legend(title = "Age groups"))
 ```
 Above, we have an age distribution map toward the survey group, the majority of the participants are aged from 45-54,  followed by the group of people who are 25-34 years old, which is almost the same amount compared to people who are over 65 years old, and around 80 people who are 35-44 years old, 72 from 55-64, and 63 from 18-24.
 
 ```{r}
 #Plot data to get a overview
-ggplot(my_data, aes(x = d4_income)) + geom_bar(width=0.2)+labs( x = "Income level", y ="Number of Household", title ="Househould Income Distribution")
+ggplot(my_data, aes(x = d4_income, fill = d4_income)) + geom_bar(width=0.2)+labs( x = "Income Level", y ="Number of Household", title ="Househould Income Distribution") + guides(fill = guide_legend(title = "Income level")) + scale_x_discrete(guide = guide_axis(n.dodge=3))
 ```
 Here is an income distribution bar chart for the 500 participants. The majority of the participants’ income per year is lower than $19999, and amount of people in the graph presents a decreasing trend, with the salary increase.
 
 ```{r}
 #Plot data to get a overview
-ggplot(my_data, aes(x = d5_effect)) + geom_bar(width=0.2)+labs( x = "Level", y = "Number of people", title =" Life experience")
+ggplot(my_data, aes(x = d5_effect, fill = d5_effect)) + geom_bar(width=0.2)+labs( x = "Satisfaction Level", y = "Number of people", title =" Life experience") + guides(fill = guide_legend(title = "Satisfaction level")) + scale_x_discrete(guide = guide_axis(n.dodge=3))
 ```
 This section shows how people feel about government policies in reaction to COVID-19. Most of the citizens are optimistic about government measures for the pandemic. More than half of the people who had selected positive, strongly agree, others somewhat agrees.
 
 ```{r}
-ggplot(my_data, aes(x = d6_efficiency)) + geom_bar(width=0.2)+labs( x = "Degree of Satisfaction", y = "Number of people", title ="Satisfaction Distribution")
+ggplot(my_data, aes(x = d6_efficiency,fill = d6_efficiency)) + geom_bar(width=0.2)+labs( x = "Acceptance Level", y = "Number of people", title ="Acceptance") + guides(fill = guide_legend(title = "Acceptance level")) + scale_x_discrete(guide = guide_axis(n.dodge=3))
 ```
 
 ```{r}
 #Plot data to get a overview
-ggplot(my_data, aes(x = d7_vote)) + geom_bar(width=0.2)+labs( x = "Types of Party", y = "Distribution", title ="Poll result")
+ggplot(my_data, aes(x = d7_vote, fill = d7_vote)) + geom_bar(width=0.2)+labs( x = "Plitical Choice", y = "Number of people", title ="Poll result") + guides(fill = guide_legend(title = "Political party"))
 ```
 
+# Part 4: Data Analysis
 ```{r}
 # Gender VS Election choice
 set.seed(500)
@@ -129,22 +126,21 @@ Party.data.m<-sample(Party,D.m,replace=TRUE,prob=c(0.24,0.07,0.03,0.01,0.05,0.00
 my_data[my_data$Gender=='Female',"Party"]<-Party.data.f
 my_data[my_data$Gender=='Male',"Party"]<-Party.data.m
 
-ggplot(my_data, aes(x = Party,fill=Gender)) + geom_bar(width=0.2)+labs( x = "Type of Party", y = "Gender",
-                                                                        title ="Poll result")
+ggplot(my_data, aes(x = Party,fill=Gender)) + geom_bar(width=0.2)+labs( x = "Political Choice", y = "Gender", title ="Poll result")
 ```
-Poll result between gender and election:
-The percentage distribution between all parties are almost evenly distributed, about a slightly more than a half of participants are female, and less than a half are male, applied to all parties supportive.
+In general, almost all parties have slightly more female supporters than male supporters, this is consistent with previous result of gender participations, meaning that there is little gender differences in elector's political view.
 
+#Income lvl VS Election choices
 ```{r}
 set.seed(500)
-#Income lvl VS Election choices
+
 my_data$Party2<-NA
 #Candidates demographic(household income lvl)
 D.a<-nrow(my_data[my_data$Household_income=='<$19,999',])
 D.b<-nrow(my_data[my_data$Household_income=='$20,000-$39,999',])
 D.c<-nrow(my_data[my_data$Household_income=='$40,000-$59,999',])
 D.d<-nrow(my_data[my_data$Household_income=='$60,000-$79,999',])
-D.e<-nrow(my_data[my_data$Household_income=='>$80,000',])
+D.e<-nrow(my_data[my_data$Household_income=='$80,000+',])
 D.a
 D.b
 D.c
@@ -162,11 +158,10 @@ my_data[my_data$Household_income=='<$19,999',"Party2"]<-Party2.data.a
 my_data[my_data$Household_income=='$20,000-$39,999',"Party2"]<-Party2.data.b
 my_data[my_data$Household_income=='$40,000-$59,999',"Party2"]<-Party2.data.c
 my_data[my_data$Household_income=='$60,000-$79,999',"Party2"]<-Party2.data.d
-my_data[my_data$Household_income=='>$80,000',"Party2"]<-Party2.data.e
+my_data[my_data$Household_income=='$80,000+',"Party2"]<-Party2.data.e
 
 #Overview of household income distribution in each category
-ggplot(my_data, aes(x = Party2,fill=Household_income)) + geom_bar(width=0.2)+labs( x = "Type of Party", y = "Household_income lvl",
-                                                                                   title ="Poll result")
+ggplot(my_data, aes(x = Party2,fill=Household_income)) + geom_bar(width=0.2)+labs( x = "Political Choice", y = "Household Income lvl", title ="Income Distribution")
 
 #Distribution of people who have voted for Liberal
 slices <- c(0.05,0.09,0.11,0.15,0.16)
@@ -174,9 +169,9 @@ lbls <- c("$19,999", "$20,000-$39,999", "$40,000-$59,999", "$60,000-$79,999", "$
 pct <- round(slices/sum(slices)*100)
 lbls <- paste(lbls, pct) # add percents to labels 
 lbls <- paste(lbls,"%",sep="") # ad % to labels 
-pie(slices, labels = lbls, main="Voter demographics")
+pie(slices, labels = lbls, main="Voter Demographics")
 ```
-Poll result between income and election:
+According to the pie chart, over 50% of the participants have a household income over 60,000 dollars per year.
 The majority of people would select Conservatives in the next election, followed by the Liberal party. In general, almost the same number of middle-class participants would choose liberal and conservative, and people with lower incomes would prefer the Conservative.
 
 ```{r}
@@ -219,8 +214,7 @@ my_data[my_data$Ethnicity=='SouthAmerican',"Party3"]<-Party3.data.f
 my_data[my_data$Ethnicity=='Oceania',"Party3"]<-Party3.data.g
 
 # Get a overview of different ethnicity's election preference
-ggplot(my_data, aes(x = Party3,fill=Ethnicity)) + geom_bar(width=0.2)+labs( x = "Type of Party", y = "Ethnicity",
-                                                                            title ="Poll result")
+ggplot(my_data, aes(x = Party3,fill=Ethnicity)) + geom_bar(width=0.2)+labs( x = "Political Choice", y = "Number of people", title ="Ethnicity Distribution")
 
 #Asian election preference
 slices <- c(0.18,0.042,0.017,0.0024,0.011,0.002)
@@ -228,7 +222,7 @@ lbls <- c("Liberal","New Democrat","Green","Others","Conservative","People's par
 pct <- round(slices/sum(slices)*100)
 lbls <- paste(lbls, pct) # add percents to labels 
 lbls <- paste(lbls,"%",sep="") # ad % to labels 
-pie(slices, labels = lbls, main="Asian election preference")
+pie(slices, labels = lbls, main="Asian Election Preference")
 
 #Aboriginal election preference
 slices <- c(0.012,0.02,0.022,0.0026,0.021,0.0034)
@@ -236,7 +230,7 @@ lbls <- c("Liberal","New Democrat","Green","Others","Conservative","People's par
 pct <- round(slices/sum(slices)*100)
 lbls <- paste(lbls, pct) # add percents to labels 
 lbls <- paste(lbls,"%",sep="") # ad % to labels 
-pie(slices, labels = lbls, main="Aboriginal election preference")
+pie(slices, labels = lbls, main="Aboriginal Election Preference")
 ```
 Pie chart of the distribution of participants categorized by income in liberal parties. Majority of the supportive are high income.
 
@@ -253,7 +247,7 @@ We have found out that the Liberal party has equal supports by males and females
 # How we can make a bigger stand in the society?
 In the main time, a more important thing is that people who have selected conservative party is more than the supports towards liberal party. Our big focus as the liberal party includes: ‘climate change’, ‘health care’, ‘general economy’, ‘affordable and living costs’, ‘Tax/senior issues’. The conservative party once made a point of our increase of carbon tax is ‘ineffective’. Beside that, the conservative party’s goal of our government deficit is ‘0’, as we only promise to decrease to under $10 billion. Maybe people are not happy with that, we need to spend more time figuring out about raising our local GDP and GNP, increase the net export in order to balance out the deficit. Once we have sorted out the general economy problem, we are not far from getting more supports.
 
-# Reference
-
-codes used for this study is linked below.
+# codes used for this study 
 https://github.com/joliw9282/2020-toronto-election-prediction
+
+# Reference
