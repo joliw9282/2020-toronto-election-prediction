@@ -7,10 +7,10 @@ output: pdf_document
 ---
 
 # Part 1. Summary
-Significant changes have happened in Canada since last year’s federal election. Since the COVID-19 outbreak, the federal government and local leaders have placed different measures and contingency plans to react to the pandemic. We are working with the liberal party to investigate Toronto residences’ (excluding the GTA area) opinion on the office’s work in the past year and to reflect on the effectiveness of their reactive policies during the pandemic outbreak. The current survey simulated 500 participants’ responses as our representative sample. The distribution of the simulation is designed based on demographic layouts according to the 2016 census Canada (@citecensus). Simulation results were analyzed according to gender, age, racial groups, and income. The results showed that most voters in Toronto are satisfied with the government’s reactive measures to COVID-19 and think that they are very efficient. Voters, predominantly Asian and European groups, favour the Liberal party over the others. The liberal supporters are mostly constituted by female Europeans and Asians, whose household income is below 40,000 dollars per year. 
+Significant changes have happened in Canada since last year’s federal election. Since the COVID-19 outbreak, the federal government and local leaders have placed different measures and contingency plans to react to the pandemic. We are working with the Liberal party to investigate Toronto residences’ (excluding the GTA area) opinion on the office’s work in the past year and to reflect on the effectiveness of their reactive policies during the pandemic outbreak. The current survey simulated 500 participants’ responses as our representative sample. The distribution of the simulation is designed based on demographic layouts according to the 2016 census Canada (@citecensus). Simulation results were analyzed according to gender, age, racial groups, and income. The results showed that most voters in Toronto are satisfied with the government’s reactive measures to COVID-19 and think that they are very efficient. Voters, predominantly Asian and European groups, favour the Liberal party over the others. The liberal supporters are mostly constituted by female Europeans and Asians, whose household income is below 40,000 dollars per year. 
 
 # Part 2. Introduction
-In this opinion polling, we are investigating the political interest of Toronto residences eligible to vote if an election was held in 2020. Toronto has always been the top supporter of the liberal party (@citepastresultstoronto). Over the past few elections, the liberal leaders had an absolute majority of all districts. Last year, the liberal party won all 23 out of 23 districts in the city of Toronto (@citynews). However, as the national polling suggests, the support rate for the two most powerful parties, the liberal and the conservative, in Canada has been gradually declining on a national level. We are interested in investigating whether this trend is present in Toronto and whether the liberal leaders in Toronto should be cautious of people’s attitude change after the pandemic.
+In this opinion polling, we are investigating the political interest of Toronto residences eligible to vote if an election was held in 2020. Toronto has always been the top supporter of the Liberal party (@citepastresultstoronto). Over the past few elections, the Liberal leaders had an absolute majority of all districts. Last year, the Liberal party won all 23 out of 23 districts in the city of Toronto (@citynews). However, as the national polling suggests, the support rate for the two most powerful parties, the Liberal and the Conservative, in Canada has been gradually declining on a national level. We are interested in investigating whether this trend is present in Toronto and whether the Liberal leaders in Toronto should be cautious of people’s attitude change after the pandemic.
 
 # Part 3.Survey Methodology. 
 Our questionnaire includes questions that investigate the pandemic’s effect on electors’ evaluation, both emotionally and rationally, of current policies. Survey questions consist of gender, racial group by global geography, age, income range, personal experience in the pandemic, and government measures evaluation. We are not collecting data involving address, contact, or other personal information. There are seven questions in total, requiring approximately two minutes to finish; participants will have up to one week to complete the survey with a maximum one attempt, until it closes after one month (starting from October 02, 2020). We are using online panels to post survey link and scan code on social media sites, such as Twitter and Facebook via official government account and local district websites. Social media users are predominantly younger adults (We chose Twitter and Facebook because their user average user age is higher than other sites). Therefore, we will also put up posters in local grocery stores, such as Walmart and Shoppers, to get participants from various age groups. 
@@ -71,42 +71,74 @@ head(my_data)
 
 ```{r}
 #Plot data to get a overview
-ggplot(my_data, aes(x = d1_gender, fill = d1_gender)) + geom_bar(width=0.2)+labs( x = "Gender", y = "Number of people", title ="Gender Distribution") + guides(fill = guide_legend(title = "Gender"))
+ggplot(my_data, aes(x = d1_gender, fill = d1_gender)) + 
+  geom_bar(width=0.2) + 
+  labs( x = "Gender", y = "Number of people", title ="Gender Distribution") + 
+  guides(fill = guide_legend(title = "Gender"))
 ```
-We have made a gender distribution graph on the 500 people who have taken the survey from the first bar chat above. The majority of them are female, which is about 20% more than males. 
 
 ```{r}
 #Plot data to get a overview
-ggplot(my_data, aes(x = d2_ethnicity, fill = d2_ethnicity)) + geom_bar(width=0.2)+labs( x = "Ethnic groups", y = "Number of people", title ="Ethnic Distribution") + guides(fill = guide_legend(title = "Ethnicity"))
+ggplot(my_data, aes(x = d2_ethnicity, fill = d2_ethnicity)) +
+  geom_bar(width=0.2) +
+  labs( x = "Ethnic groups", y = "Number of people", title ="Ethnic Distribution") + 
+  guides(fill = guide_legend(title = "Ethnicity"))
 ```
+
 Majority of the survey participants are Asian and Europeans. These two ethnic groups takes up the more percentage of the population than all the others combined.
 
 ```{r}
 #Plot data to get a overview
-ggplot(my_data, aes(x = d3_age, fill = d3_age)) + geom_bar(width=0.2)+labs( x = "Age groups", y = "Number of people", title ="Age group Distribution") + guides(fill = guide_legend(title = "Age groups"))
+ggplot(my_data, aes(x = d3_age, fill = d3_age)) + 
+  geom_bar(width=0.2) +
+  labs( x = "Age groups", y = "Number of people", title ="Age Group Distribution") + 
+  guides(fill = guide_legend(title = "Age groups"))
 ```
+
 Above, we have an age distribution map toward the survey group, the majority of the participants are aged from 45-54,  followed by the group of people who are 25-34 years old, which is almost the same amount compared to people who are over 65 years old, and around 80 people who are 35-44 years old, 72 from 55-64, and 63 from 18-24.
 
-```{r}
-#Plot data to get a overview
-ggplot(my_data, aes(x = d4_income, fill = d4_income)) + geom_bar(width=0.2)+labs( x = "Income Level", y ="Number of Household", title ="Househould Income Distribution") + guides(fill = guide_legend(title = "Income level")) + scale_x_discrete(guide = guide_axis(n.dodge=3))
-```
-Here is an income distribution bar chart for the 500 participants. The majority of the participants’ income per year is lower than $19999, and amount of people in the graph presents a decreasing trend, with the salary increase.
 
 ```{r}
 #Plot data to get a overview
-ggplot(my_data, aes(x = d5_effect, fill = d5_effect)) + geom_bar(width=0.2)+labs( x = "Satisfaction Level", y = "Number of people", title =" Life experience") + guides(fill = guide_legend(title = "Satisfaction level")) + scale_x_discrete(guide = guide_axis(n.dodge=3))
+ggplot(my_data, aes(x = d4_income, fill = d4_income))  + 
+  geom_bar(width=0.2) + 
+  labs( x = "Income Level", y ="Number of Household", title ="Househould Income Distribution") +
+  guides(fill = guide_legend(title = "Income level")) + 
+  scale_x_discrete(guide = guide_axis(n.dodge=3))
+```
+
+Here is an income distribution bar chart for the 500 participants. The majority of the participants’ income per year is lower than $19999, and amount of people in the graph presents a decreasing trend, with the salary increase.
+
+
+```{r}
+#Plot data to get a overview
+ggplot(my_data, aes(x = d5_effect, fill = d5_effect)) + 
+  geom_bar(width=0.2) + 
+  labs( x = "Satisfaction Level", y = "Number of people", title =" Life experience") + 
+  guides(fill = guide_legend(title = "Satisfaction Distribution")) + 
+  scale_x_discrete(guide = guide_axis(n.dodge=3))
 ```
 This section shows how people feel about government policies in reaction to COVID-19. Most of the citizens are optimistic about government measures for the pandemic. More than half of the people who had selected positive, strongly agree, others somewhat agrees.
 
+
 ```{r}
-ggplot(my_data, aes(x = d6_efficiency,fill = d6_efficiency)) + geom_bar(width=0.2)+labs( x = "Acceptance Level", y = "Number of people", title ="Acceptance") + guides(fill = guide_legend(title = "Acceptance level")) + scale_x_discrete(guide = guide_axis(n.dodge=3))
+ggplot(my_data, aes(x = d6_efficiency,fill = d6_efficiency)) + 
+  geom_bar(width=0.2) + 
+  labs( x = "Acceptance Level", y = "Number of people", title ="Acceptance Distribution") + 
+  guides(fill = guide_legend(title = "Acceptance level")) + 
+  scale_x_discrete(guide = guide_axis(n.dodge=3))
 ```
+Most participants have a high recognition level for the government's reaction measures during the pandemic, with some benefit of the doubt.
 
 ```{r}
 #Plot data to get a overview
-ggplot(my_data, aes(x = d7_vote, fill = d7_vote)) + geom_bar(width=0.2)+labs( x = "Plitical Choice", y = "Number of people", title ="Poll result") + guides(fill = guide_legend(title = "Political party"))
+ggplot(my_data, aes(x = d7_vote, fill = d7_vote)) + 
+  geom_bar(width=0.2) + 
+  labs( x = "Political Choice", y = "Number of people", title ="Poll result") + 
+  guides(fill = guide_legend(title = "Political party"))
 ```
+Support for the Liberal party is still significantly higher than the others. Unlike the national trend, the NDP seems to have a higher support rate than the Conservatives in Toronto. 
+
 
 # Part 4: Data Analysis
 ```{r}
@@ -126,9 +158,12 @@ Party.data.m<-sample(Party,D.m,replace=TRUE,prob=c(0.24,0.07,0.03,0.01,0.05,0.00
 my_data[my_data$Gender=='Female',"Party"]<-Party.data.f
 my_data[my_data$Gender=='Male',"Party"]<-Party.data.m
 
-ggplot(my_data, aes(x = Party,fill=Gender)) + geom_bar(width=0.2)+labs( x = "Political Choice", y = "Gender", title ="Poll result")
+ggplot(my_data, aes(x = Party,fill=Gender)) + 
+  geom_bar(width=0.2) + 
+  labs( x = "Political Choice", y = "Gender", title ="Poll result") + 
+  coord_flip()
 ```
-In general, almost all parties have slightly more female supporters than male supporters, this is consistent with previous result of gender participations, meaning that there is little gender differences in elector's political view.
+In general, almost all parties have slightly more female supporters than male supporters, this is consistent with the gender distribution in our sample, meaning that there is little gender differences in elector's political view. However, we do not have enough evidence to judge the significance of this difference. 
 
 #Income lvl VS Election choices
 ```{r}
@@ -161,7 +196,10 @@ my_data[my_data$Household_income=='$60,000-$79,999',"Party2"]<-Party2.data.d
 my_data[my_data$Household_income=='$80,000+',"Party2"]<-Party2.data.e
 
 #Overview of household income distribution in each category
-ggplot(my_data, aes(x = Party2,fill=Household_income)) + geom_bar(width=0.2)+labs( x = "Political Choice", y = "Household Income lvl", title ="Income Distribution")
+ggplot(my_data, aes(x = Party2,fill=Household_income)) + 
+  geom_bar(width=0.2) + 
+  labs( x = "Political Choice", y = "Household Income lvl", title ="Income Distribution with in the Liberal Party ") + 
+  coord_flip()
 
 #Distribution of people who have voted for Liberal
 slices <- c(0.05,0.09,0.11,0.15,0.16)
@@ -169,10 +207,10 @@ lbls <- c("$19,999", "$20,000-$39,999", "$40,000-$59,999", "$60,000-$79,999", "$
 pct <- round(slices/sum(slices)*100)
 lbls <- paste(lbls, pct) # add percents to labels 
 lbls <- paste(lbls,"%",sep="") # ad % to labels 
-pie(slices, labels = lbls, main="Voter Demographics")
+pie(slices, labels = lbls, main="Voter Demographics within the Liberal Party")
 ```
-According to the pie chart, over 50% of the participants have a household income over 60,000 dollars per year.
-The majority of people would select Conservatives in the next election, followed by the Liberal party. In general, almost the same number of middle-class participants would choose liberal and conservative, and people with lower incomes would prefer the Conservative.
+
+The majority of the people who voted for the Liberal party have a higher than average SES status. According to the pie chart, over 50% of the participants have a household income over 60,000 dollars per year.
 
 ```{r}
 set.seed(500)
@@ -214,7 +252,10 @@ my_data[my_data$Ethnicity=='SouthAmerican',"Party3"]<-Party3.data.f
 my_data[my_data$Ethnicity=='Oceania',"Party3"]<-Party3.data.g
 
 # Get a overview of different ethnicity's election preference
-ggplot(my_data, aes(x = Party3,fill=Ethnicity)) + geom_bar(width=0.2)+labs( x = "Political Choice", y = "Number of people", title ="Ethnicity Distribution")
+ggplot(my_data, aes(x = Party3,fill=Ethnicity)) + 
+  geom_bar(width=0.2) + 
+  labs( x = "Political Choice", y = "Number of people", title ="Ethnicity Distribution") + 
+  coord_flip()
 
 #Asian election preference
 slices <- c(0.18,0.042,0.017,0.0024,0.011,0.002)
@@ -222,7 +263,7 @@ lbls <- c("Liberal","New Democrat","Green","Others","Conservative","People's par
 pct <- round(slices/sum(slices)*100)
 lbls <- paste(lbls, pct) # add percents to labels 
 lbls <- paste(lbls,"%",sep="") # ad % to labels 
-pie(slices, labels = lbls, main="Asian Election Preference")
+p1 <- pie(slices, labels = lbls, main="Asian Election Preference")
 
 #Aboriginal election preference
 slices <- c(0.012,0.02,0.022,0.0026,0.021,0.0034)
@@ -230,22 +271,22 @@ lbls <- c("Liberal","New Democrat","Green","Others","Conservative","People's par
 pct <- round(slices/sum(slices)*100)
 lbls <- paste(lbls, pct) # add percents to labels 
 lbls <- paste(lbls,"%",sep="") # ad % to labels 
-pie(slices, labels = lbls, main="Aboriginal Election Preference")
+p2 <- pie(slices, labels = lbls, main="Aboriginal Election Preference")
 ```
-Pie chart of the distribution of participants categorized by income in liberal parties. Majority of the supportive are high income.
+
+Within each political party, ethnic distribution of their supporters various. For the Liberals, majority of the supporters are Asian and European, with the Asian population only slightly larger than the European population. We can also find similar first pattern in other parties as well, possibly because these two groups takes up most of Toronto's population makeup. However, in parties like the Conservative and the NDP, European supporters seem to take a larger portion, which is possibly because the Liberal party tend to have policies that benefit the immigrants and the minority groups. 
+
+This idea can be justified with the two pie charts shown above. Within ethnic groups, an overly dominant Asian population favors the Liberal party, whereas the Aboriginals tend to favor the NDP and the Conservative. It would be interesting for future studies to further investigate this matter.
 
 # Part 4: Discussion
 # How to keep everyone happy?
-We have done a fantastic job on racial equalizing, particularly on Asian (71%) and other minority groups, since us and conservation party are both immigration friendly. There are more than 85% of the chance that a minority racial group will vote for us, therefore, as long as we keep on paying attention on taking care of social inequality problems, then we are good to go. The only part that we need to pay more attention is how we can make the aboriginal people feel more comfortable. Majority of the Aboriginal people have voted for the People’s party, and we need to focus more on the ‘corruption and ethics in government’.
+In general, the Liberal party has been doing a great job on designing policies that favors the majorities and controlling the pandemic in the city of Toronto. According to our simulation, the Liberal party has a advantage among the two dominant population, Asians and Europeans, who are also likely to have a household income of over 60,000 dollars per year. On the other hand, for minority groups, the support Liberal is much lower, only takes up to 15% among the Aboriginals. These results suggest, although the Liberal party wins most of the support in the city of Toronto, the reason for this advantage is because the city's population is made up of higher social economic status(SES) population. However, these findings also question participants' satisfaction level for pandemic measures. One potential problem is that, people with high SES are more likely to have access to high quality health care and social supports, where the situation might be different for minority groups and those who have lower SES. As one of the major cities in multicultural country, political parties should always be aware that people with different income levels tend to have different political interests. Our survey is limited in finding the psychology behind the participants' choices, nonetheless, the liberals and the others should be more attentive for different needs of people from all groups. 
 
-# What matters in term of our survey?
-As results have shown, a political party needs to take care of several factors to receive supports: gender, age, ethnicity, income. Gender equalization is an essential factor in this particular kind of survey because the government can have policies towards all genders, but feel unfair for others because of gender issues. So it can tell by the liberal party’s policies preferences by gender. Ethnicity is a huge problem for politics, as we live in a multicultural society.  As we know that racism is not accepted no matter what happens globally, politics need to be race/colour-friendly. This survey does have the power to show how minorities feel about current politics. Doing an income background check is necessary for the focus of our political party. We need to focus on making the rich happy and the poor comfortable. People with different levels of income tend to have other interests in political factors. Lastly, our society has people of all ages, just like the income background check. We must know what people think of different ages to make a better environment for all people. 
- 
 # So here is what we should do next:
-We have found out that the Liberal party has equal supports by males and females, which means that we are doing a great job on gender equalization. We will need to pay more attention to ‘Affordability and cost of living’; most of our supports comes from the ‘rich.’ As we pay more attention to the lower-income class, we can have a more successful run. To do that, we can do so by increasing the minimum wage and decreasing the tax overall. Although t might sound like the government will go ‘broke’ afterwards, people are starting to have a better life and better income. The willingness to spend has increased, which can create more job opportunities and more government income. Besides raising people’s economic life, we need to balance out and make some benefits towards housing, food, rents, anything that is rational and potentially can help our citizens. By the time we finish working on these problems, we can have supports from all income classes, and people will be happier.
+We will need to pay more attention to ‘Affordability and cost of living’, and be aware that most of our supports comes from the ‘Rich.’ As we pay more attention to the lower-income class, not only can we win more support, but also provide a better society. We can do so by increasing the minimum wage and decreasing the tax overall. Although it may seem to cause a economic problem for the government, this is critical for improving the well-being of all groups in the society. Once, the willingness to spend increases, it will create more job opportunities.
  
 # How we can make a bigger stand in the society?
-In the main time, a more important thing is that people who have selected conservative party is more than the supports towards liberal party. Our big focus as the liberal party includes: ‘climate change’, ‘health care’, ‘general economy’, ‘affordable and living costs’, ‘Tax/senior issues’. The conservative party once made a point of our increase of carbon tax is ‘ineffective’. Beside that, the conservative party’s goal of our government deficit is ‘0’, as we only promise to decrease to under $10 billion. Maybe people are not happy with that, we need to spend more time figuring out about raising our local GDP and GNP, increase the net export in order to balance out the deficit. Once we have sorted out the general economy problem, we are not far from getting more supports.
+In the main time, it is also important to study why do people choose the other parties, so that we can learn from their progress and mistakes. The Liberal party's primary political focusese includes: ‘climate change’, ‘health care’, ‘general economy’, ‘affordable and living costs’, ‘Tax/senior issues’. Whereas the conservative party once made a point of our increase of carbon tax is ‘ineffective’. Beside that, the conservative party’s goal of our government deficit is ‘0’, as we only promise to decrease to under $10 billion @citepolicies. Going into depth about participants' attitude on specific political policies is another angle future studies can take to improve support for the Liberals as well as improve citizens' well-being in general.
 
 # codes used for this study 
 https://github.com/joliw9282/2020-toronto-election-prediction
